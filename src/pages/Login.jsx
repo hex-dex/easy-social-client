@@ -14,7 +14,7 @@ const Login = () => {
       className='center h-screen bg-no-repret bg-cover'
       style={{ backgroundImage: `url(${background})` }}
     >
-      <div className='mt-60 h-96 w-96 rounded-lg bg-black bg-opacity-20'>
+      <div className='my-auto p-4 w-96 rounded-lg bg-black bg-opacity-20'>
         <h1 className='text-2xl mt-5 mb-3 text-hawkes-blue-500 text-center'>
           Login
         </h1>
@@ -33,7 +33,9 @@ const Login = () => {
                 },
               })}
             />
-            {errors?.text && errors.text.message}
+            <span className='text-red-700'>
+              {errors?.text && errors.text.message}
+            </span>
           </div>
           <label className=' ml-20 mt-3 text-sm text-hawkes-blue-500'>
             Password
@@ -50,7 +52,9 @@ const Login = () => {
                 },
               })}
             />
-            {errors?.password && errors.password.message}
+            <span className='text-red-700'>
+              {errors?.password && errors.password.message}
+            </span>
           </div>
           <div className='center'>
             <button className='btn mt-6 '>Login</button>
