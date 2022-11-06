@@ -15,7 +15,7 @@ const Login = () => {
       style={{ backgroundImage: `url(${background})` }}
     >
       <div className='mt-60 h-96 w-96 rounded-lg bg-black bg-opacity-20'>
-        <h1 className='text-2xl mt-10 mb-3 text-hawkes-blue-500 text-center'>
+        <h1 className='text-2xl mt-5 mb-3 text-hawkes-blue-500 text-center'>
           Login
         </h1>
         <form className='flex flex-col' onSubmit={handleSubmit(onSubmit)}>
@@ -24,17 +24,16 @@ const Login = () => {
           </label>
           <div className='center'>
             <input
-              type='email'
+              type='text'
               className='forms mt-0.5'
-              {...register('email', {
-                required: 'Required',
+              {...register('text', {
+                required: 'Enter Username',
                 pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: 'Not A Valid Email Address',
+                  message: 'Not A Valid Username',
                 },
               })}
             />
-            {errors?.email && errors.email.message}
+            {errors?.text && errors.text.message}
           </div>
           <label className=' ml-20 mt-3 text-sm text-hawkes-blue-500'>
             Password
@@ -55,7 +54,7 @@ const Login = () => {
           </div>
           <div className='center'>
             <button className='btn mt-6 '>Login</button>
-            <p className='mt-7 text-xs mb-1 text-hawkes-blue-500'>
+            <p className='mt-5 text-xs mb-1 text-hawkes-blue-500'>
               Forgotten Password
             </p>
             <button className='btn'>Register</button>
