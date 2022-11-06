@@ -34,13 +34,24 @@ const Login = () => {
                 },
               })}
             />
-            {errors.email && errors.email.message}
+            {errors?.email && errors.email.message}
           </div>
           <label className=' ml-20 mt-3 text-sm text-hawkes-blue-500'>
             Password
           </label>
           <div className='center'>
-            <input type='password' className='forms mt-0.5' />
+            <input
+              type='password'
+              name='password'
+              className='forms mt-0.5'
+              {...register('password', {
+                required: 'Required',
+                pattern: {
+                  message: 'Enter Password',
+                },
+              })}
+            />
+            {errors?.password && errors.password.message}
           </div>
           <div className='center'>
             <button className='btn mt-6 '>Login</button>
