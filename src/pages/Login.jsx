@@ -15,7 +15,7 @@ const Login = () => {
       style={{ backgroundImage: `url(${background})` }}
     >
       <div className="my-auto p-4 w-96 rounded-lg bg-black bg-opacity-20">
-        <h1 className="text-2xl mt-5 mb-3 text-hawkes-blue-500 text-center">
+        <h1 className="text-2xl my-8 text-hawkes-blue-500 text-center">
           Login
         </h1>
         <form className="py-2" onSubmit={handleSubmit(onSubmit)}>
