@@ -4,6 +4,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        screen: 'hsl(var(--color-screen) / <alpha-value>)',
+        container: 'hsl(var(--color-container) / 0.3)',
         'hawkes-blue': {
           DEFAULT: '#C5D0FB',
           50: '#FFFFFF',
