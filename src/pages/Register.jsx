@@ -1,52 +1,100 @@
-import React from 'react'
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { useFormAction } from 'react-router-dom';
 import background from '../assets/sky.jpg';
 
 const Register = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (values) => console.log(values);
   return (
     <div
-    className='center h-screen bg-no-repeat bg-cover'
-    style={{ backgroundImage: `url(${background})` }}
-  >
-    <div className='my-auto  w-96 rounded-lg bg-black bg-opacity-20 pb-4' >
-      <h1 className='text-2xl mt-10 mb-3 text-hawkes-blue-500 text-center'>
-        Register
-      </h1>
-      <form className='flex flex-col'>
-        <label className=' ml-20 mt-3 text-sm text-hawkes-blue-500'>
-          First Name
-        </label>
-        <div className='center'>
-          <input type='text' className='forms mt-0.5' />
-        </div>
-        <label className=' ml-20 mt-3 text-sm text-hawkes-blue-500'>
-          Last Name
-        </label>
-        <div className='center'>
-          <input type='text' className='forms mt-0.5' />
-        </div>
-        <label className=' ml-20 mt-3 text-sm text-hawkes-blue-500'>
-          Username
-        </label>
-        <div className='center'>
-          <input type='text' className='forms mt-0.5' />
-        </div>
-        <label className=' ml-20 mt-3 text-sm text-hawkes-blue-500'>
-          Password
-        </label>
-        <div className='center'>
-          <input type='password' className='forms mt-0.5 ' />
-        </div>
-        <div className='center'>
-          <button className='btn mt-6 '>Login</button>
-          <p className='mt-7 text-xs mb-1 text-hawkes-blue-500'>
-            Forgotten Password
-          </p>
-          <button className='btn'>Register</button>
-        </div>
-      </form>
+      className="flex justify-center h-screen bg-no-repeat bg-cover"
+      style={{ backgroundImage: `url(${background})` }}
+    >
+      <div className="my-auto  w-96 rounded-lg bg-black bg-opacity-20 pb-4">
+        <h1 className="text-2xl my-8 text-hawkes-blue-500 text-center">
+          Register
+        </h1>
+        <form className="py-2" onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex flex-col mx-auto w-fit">
+            <label className="text-sm text-hawkes-blue-500">First Name</label>
+            <input
+              type="text"
+              className="forms"
+              {...register('first_name', {
+                required: 'Enter First Name',
+                pattern: {
+                  message: 'Not A First Name',
+                },
+              })}
+            />
+            <span className="text-red-700 h-6  w-fit mx-auto">
+              {errors?.first_name && errors.first_name.message}
+            </span>
+          </div>
+          <div className="flex flex-col mx-auto w-fit">
+            <label className="text-sm text-hawkes-blue-500">Last Name</label>
+            <input
+              type="text"
+              className="forms"
+              {...register('last_name', {
+                required: 'Enter Last Name',
+                pattern: {
+                  message: 'Not A Valid Last Name',
+                },
+              })}
+            />
+            <span className="text-red-700 h-6 w-fit mx-auto">
+              {errors?.last_name && errors.last_name.message}
+            </span>
+          </div>
+          <div className="flex flex-col mx-auto w-fit">
+            <label className="text-sm text-hawkes-blue-500">Username</label>
+            <input
+              type="text"
+              className="forms"
+              {...register('username', {
+                required: 'Enter Username',
+                pattern: {
+                  message: 'Not A Valid Username',
+                },
+              })}
+            />
+            <span className="text-red-700 h-6 w-fit mx-auto">
+              {errors?.username && errors.username.message}
+            </span>
+          </div>
+          <div className="flex flex-col mx-auto w-fit">
+            <label className="text-sm text-hawkes-blue-500">Password</label>
+            <input
+              type="password"
+              className="forms"
+              {...register('password', {
+                required: 'Enter Password',
+                pattern: {
+                  message: 'Not A Valid Password',
+                },
+              })}
+            />
+            <span className="text-red-700 h-6 w-fit mx-auto">
+              {errors?.password && errors.password.message}
+            </span>
+          </div>
+          <div className="flex flex-col  mx-auto w-fit">
+            <button className="btn mt-6">Login</button>
+            <p className="mt-7 text-xs mb-1 text-hawkes-blue-500">
+              Forgotten Password
+            </p>
+            <button className="btn">Register</button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
