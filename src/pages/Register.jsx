@@ -84,12 +84,14 @@ const Register = () => {
               {errors?.password && errors.password.message}
             </span>
           </div>
-          <div className="flex flex-col  mx-auto w-fit">
-            <button className="btn mt-6">Login</button>
+          <div className="flex flex-col mx-auto w-fit">
+            <button className="btn mt-6">Register</button>
             <p className="mt-7 text-xs mb-1 text-hawkes-blue-500">
-              Forgotten Password
+              Already have an account?
             </p>
-            <button className="btn">Register</button>
+            <button type="button" className="btn">
+              Login
+            </button>
           </div>
         </form>
       </div>
