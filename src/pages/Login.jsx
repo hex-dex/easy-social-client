@@ -26,7 +26,7 @@ const Login = () => {
             <input
               type="text"
               className="forms mt-0.5"
-              {...register('text', {
+              {...register('username', {
                 required: 'Enter Username',
                 pattern: {
                   message: 'Not A Valid Username',
@@ -34,7 +34,7 @@ const Login = () => {
               })}
             />
             <span className="text-red-700">
-              {errors?.text && errors.text.message}
+              {errors?.username && errors.username.message}
             </span>
           </div>
           <label className=" ml-20 mt-3 text-sm text-hawkes-blue-500">
