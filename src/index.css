@@ -18,3 +18,10 @@
     @apply bg-portage-blue-500 bg-opacity-50 w-28 text-white pt-0.5 pb-0.5 rounded-md;
   }
 }
+
+@layer base {
+  :root {
+    --color-screen:  228deg 15% 15%;
+    --color-container: 228deg 1% 1%;
+  }
+}
