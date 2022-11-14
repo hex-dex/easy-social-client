@@ -1,57 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useFormAction } from 'react-router-dom';
+import { useFormAction, useNavigate } from 'react-router-dom';
 import background from '../assets/sky.jpg';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+
+const { VITE_API_URL } = import.meta.env;
 
 const Register = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-  const onSubmit = (values) => console.log(values);
+  } = useForm({ mode: 'onBlur' });
+  const [formError, setFormError] = useState('');
+
+  const navigate = useNavigate();
+
+  const onSubmit = async (values) => {
+    const instance = axios.create({ baseURL: VITE_API_URL });
+    try {
+      const response = await instance.post(`/user/register`, values);
+      Cookies.set('access-token', response.data.accessToken);
+      navigate('/');
+    } catch (err) {
+      setFormError(err.response.data.message);
+    }
+
+    // return values;
+  };
+  console.log(formError);
   return (
-    <div
-      className="flex justify-center h-screen bg-no-repeat bg-cover"
-      style={{ backgroundImage: `url(${background})` }}
-    >
+    <div className="flex justify-center h-screen bg-screen">
       <div className="my-auto  w-96 rounded-lg bg-black bg-opacity-20 pb-4">
         <h1 className="text-2xl my-8 text-hawkes-blue-500 text-center">
           Register
         </h1>
         <form className="py-2" onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex flex-col mx-auto w-fit">
-            <label className="text-sm text-hawkes-blue-500">First Name</label>
-            <input
-              type="text"
-              className="forms"
-              {...register('first_name', {
-                required: 'Enter First Name',
-                pattern: {
-                  message: 'Not A First Name',
-                },
-              })}
-            />
-            <span className="text-red-700 h-6  w-fit mx-auto">
-              {errors?.first_name && errors.first_name.message}
-            </span>
-          </div>
-          <div className="flex flex-col mx-auto w-fit">
-            <label className="text-sm text-hawkes-blue-500">Last Name</label>
-            <input
-              type="text"
-              className="forms"
-              {...register('last_name', {
-                required: 'Enter Last Name',
-                pattern: {
-                  message: 'Not A Valid Last Name',
-                },
-              })}
-            />
-            <span className="text-red-700 h-6 w-fit mx-auto">
-              {errors?.last_name && errors.last_name.message}
-            </span>
-          </div>
           <div className="flex flex-col mx-auto w-fit">
             <label className="text-sm text-hawkes-blue-500">Username</label>
             <input
@@ -66,6 +51,23 @@ const Register = () => {
             />
             <span className="text-red-700 h-6 w-fit mx-auto">
               {errors?.username && errors.username.message}
+            </span>
+          </div>
+          <div className="flex flex-col mx-auto w-fit">
+            <label className="text-sm text-hawkes-blue-500">Email</label>
+            <input
+              type="email"
+              className="forms"
+              {...register('email', {
+                required: 'Enter Email',
+                pattern: {
+                  message: 'Not A Valid Email',
+                  value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                },
+              })}
+            />
+            <span className="text-red-700 h-6 w-fit mx-auto">
+              {errors?.email && errors.email.message}
             </span>
           </div>
           <div className="flex flex-col mx-auto w-fit">
@@ -85,11 +87,20 @@ const Register = () => {
             </span>
           </div>
           <div className="flex flex-col mx-auto w-fit">
-            <button className="btn mt-6">Register</button>
+            <button className="btn mt-6" onClick={() => setFormError('')}>
+              Register
+            </button>
+            <span className="text-red-700 h-6 w-fit mx-auto">
+              {formError && formError}
+            </span>
             <p className="mt-7 text-xs mb-1 text-hawkes-blue-500">
               Already have an account?
             </p>
-            <button type="button" className="btn">
+            <button
+              type="button"
+              className="btn"
+              onClick={() => navigate('/login')}
+            >
               Login
             </button>
           </div>
