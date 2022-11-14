@@ -1,4 +1,5 @@
 import React from 'react';
+import CreatePost from './CreatePost';
 
 const MainSelection = () => {
   return (
@@ -11,10 +12,17 @@ const MainSelection = () => {
 
 const Main = () => {
   return (
-    <div className="h-full flex flex-col flex-shrink-0 w-96 mx-2">
-      <div className="bg-container h-16 rounded-2xl"></div>
+    <div
+      className="h-full flex flex-col flex-shrink-0 mx-2 max-w-screen max-md:flex-shrink"
+      style={{ width: '28rem' }}
+    >
+      <CreatePost />
       <MainSelection />
-      <div className="bg-container flex-auto rounded-2xl"></div>
+      <div className="bg-container flex-auto rounded-2xl p-4">
+        <h1 className="text-primary mx-auto w-fit mb-4 text-2xl tracking-wide font-bold">
+          Posts
+        </h1>
+      </div>
     </div>
   );
 };

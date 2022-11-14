@@ -6,6 +6,10 @@ module.exports = {
       colors: {
         screen: 'hsl(var(--color-screen) / <alpha-value>)',
         container: 'hsl(var(--color-container) / 0.3)',
+        cover: 'hsl(var(--color-cover) / 0.3)',
+        content: 'hsl(var(--color-content) / <alpha-value>)',
+        primary: 'hsl(var(--color-text-primary) / <alpha-value>)',
+        secondary: 'hsl(var(--color-text-secondary) / <alpha-value>)',
         'hawkes-blue': {
           DEFAULT: '#C5D0FB',
           50: '#FFFFFF',
