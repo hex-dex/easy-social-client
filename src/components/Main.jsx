@@ -13,7 +13,7 @@ const MainSelection = () => {
 const Main = () => {
   return (
     <div
-      className="h-full flex flex-col flex-shrink-0 mx-2 max-w-screen"
+      className="h-full flex flex-col flex-shrink-0 mx-2 max-w-screen max-md:flex-shrink"
       style={{ width: '28rem' }}
     >
       <CreatePost />
