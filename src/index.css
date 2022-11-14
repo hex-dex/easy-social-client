@@ -5,6 +5,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif
 }
 
 @layer components {
@@ -23,5 +24,9 @@
   :root {
     --color-screen:  228deg 15% 15%;
     --color-container: 228deg 1% 1%;
+    --color-cover: 228deg 30% 50%;
+    --color-content: 228deg 35% 85%;
+    --color-text-primary: 228deg 15% 65%;
+    --color-text-secondary: 228deg 45% 90%;
   }
 }
