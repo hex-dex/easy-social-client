@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import background from '../assets/sky.jpg';
+import { instance } from '../httpUtil';
 
 const { VITE_API_URL } = import.meta.env;
 
@@ -18,15 +19,13 @@ const Login = () => {
   const [formError, setFormError] = useState('');
 
   const onSubmit = async (values) => {
-    const instance = axios.create({
-      baseURL: VITE_API_URL,
-    });
     try {
       const response = await instance.post(`/user/login`, values);
       Cookies.set('access-token', response.data.accessToken);
       navigate('/');
     } catch (err) {
-      setFormError(err.response.data.message);
+      console.log(err.message);
+      setFormError('unexpected error');
     }
   };
   return (

@@ -9,6 +9,7 @@ const authUser = () => {
   const [user, expired] = useMemo(() => {
     let user = decodeToken(accessToken);
     let expired = isExpired(accessToken);
+    console.log(user);
     return [user, expired];
   }, [accessToken]);
 
