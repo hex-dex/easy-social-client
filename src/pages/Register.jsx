@@ -4,8 +4,7 @@ import { useFormAction, useNavigate } from 'react-router-dom';
 import background from '../assets/sky.jpg';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-
-const { VITE_API_URL } = import.meta.env;
+import { instance } from '../httpUtil';
 
 const Register = () => {
   const {
@@ -18,7 +17,6 @@ const Register = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (values) => {
-    const instance = axios.create({ baseURL: VITE_API_URL });
     try {
       const response = await instance.post(`/user/register`, values);
       Cookies.set('access-token', response.data.accessToken);
